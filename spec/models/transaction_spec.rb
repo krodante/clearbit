@@ -25,14 +25,14 @@ RSpec.describe Transaction, type: :model do
       VCR.use_cassette('monthly_transactions') do
         transactions = described_class.set_recurring('2018-01-01', '2018-03-12')
 
-        non_recurring = transactions.select { |t| !t.categories.include?('payment') }
+        non_recurring = transactions.reject { |t| t.categories.include?('payment') }
         expect(non_recurring.map(&:recurring).uniq).to eq([false])
 
         recurring = transactions.select { |t| t.categories.include?('payment') }
         expect(recurring.map(&:recurring).uniq).to include(true)
       end
     end
-    
+
     it 'sets recurring attribute on payment transactions' do
       VCR.use_cassette('monthly_transactions') do
         transactions = described_class.set_recurring('2018-01-01', '2018-03-12')

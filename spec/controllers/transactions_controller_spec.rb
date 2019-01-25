@@ -7,12 +7,14 @@ RSpec.describe TransactionsController, type: :controller do
 
       expect(response).to redirect_to(action: :form)
       expect(response.status).to eq(302)
-      expect(response.request.flash[:error]).to include('start date must be before the end date')
+      expect(response.request.flash[:error]).to include(
+        'start date must be before the end date'
+      )
     end
 
     it 'renders a table with transaction data on success' do
       VCR.use_cassette('transactions_controller') do
-        post :create, params: { start_date: '2018-01-01', end_date: '2018-03-15'}
+        post :create, params: { start_date: '2018-01-01', end_date: '2018-03-15' }
 
         expect(response.status).to eq(200)
         expect(response).to render_template(:index)

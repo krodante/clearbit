@@ -5,7 +5,9 @@ class TransactionsController < ApplicationController
 
   def create
     if Date.parse(valid_params[:start_date]) < Date.parse(valid_params[:end_date])
-      @transactions = Transaction.set_recurring(valid_params[:start_date], valid_params[:end_date])
+      @transactions = Transaction.set_recurring(
+        valid_params[:start_date], valid_params[:end_date]
+      )
 
       render :index
     else

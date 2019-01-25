@@ -2,6 +2,7 @@
 
 AllCops:
   Exclude:
+    - 'app/channels/**/*'
     - 'bin/**/*'
     - 'config/**/*'
     - 'Gemfile'
@@ -21,9 +22,6 @@ Naming/PredicateName:
     - define_singleton_method
     - def_node_matcher
     - def_node_search
-
-Style/ClassAndModuleChildren:
-  EnforcedStyle: compact
 
 Style/Documentation:
   Enabled: false
@@ -81,6 +79,9 @@ Lint/UselessAccessModifier:
 Lint/BooleanSymbol:
   Enabled: false
 
+Metrics/AbcSize:
+  Max: 20
+
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
@@ -88,6 +89,9 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
 Metrics/LineLength:
   Max: 90
+
+Metrics/MethodLength:
+  Max: 15
   
 Metrics/ModuleLength:
   Exclude:
@@ -96,9 +100,3 @@ Metrics/ModuleLength:
 Performance/Caller:
   Exclude:
     - spec/rubocop/cop/performance/caller_spec.rb
-
-RSpec/PredicateMatcher:
-  EnforcedStyle: explicit
-
-RSpec/NestedGroups:
-  Max: 7

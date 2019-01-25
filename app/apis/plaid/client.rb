@@ -6,17 +6,17 @@ module Plaid
     def initialize; end
 
     def transactions(start_date, end_date)
-      body = auth_body.merge({start_date: start_date, end_date: end_date})
-      response = HTTParty.post(BASE + 'transactions/get', headers: headers, body: body.to_json)
+      body = auth_body.merge(start_date: start_date, end_date: end_date).to_json
+      response = HTTParty.post(BASE + 'transactions/get', headers: headers, body: body)
       JSON[response.body]['transactions']
     end
 
     def request(endpoint, request_body)
-      body_with_auth = auth_body.merge(request_body)
-      response = HTTParty.post(BASE + endpoint, headers: headers, body: body_with_auth.to_json)
+      body_with_auth = auth_body.merge(request_body).to_json
+      response = HTTParty.post(BASE + endpoint, headers: headers, body: body_with_auth)
       JSON[response.body]
     end
-    
+
     private
 
     def headers
@@ -32,4 +32,3 @@ module Plaid
     end
   end
 end
-

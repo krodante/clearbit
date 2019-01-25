@@ -19,7 +19,12 @@ class Transaction
   end
 
   def self.combine_data(transaction)
-    new_transaction = self.new(Date.parse(transaction['date']), transaction['name'], transaction['amount'], transaction['category'].map(&:downcase))
+    new_transaction = new(
+      Date.parse(transaction['date']),
+      transaction['name'],
+      transaction['amount'],
+      transaction['category'].map(&:downcase)
+    )
     new_transaction.domain = Domain.load_domain(new_transaction.name)
     new_transaction
   end
@@ -28,21 +33,26 @@ class Transaction
     transactions = fetch_all(start_date, end_date)
     groups = transactions.group_by(&:name)
 
-    groups.each do |name, grouped_transactions|
-      recurring_transactions = grouped_transactions.select { |t| t.categories.include?('payment') }
+    groups.each do |_name, grouped_transactions|
+      recurring_transactions = grouped_transactions.select do |t|
+        t.categories.include?('payment')
+      end
       recurring_transactions.each_with_index do |current_transaction, i|
-        current_transaction.recurring = is_recurring?(i, recurring_transactions, current_transaction) || false
+        current_transaction.recurring =
+          recurring?(i, recurring_transactions, current_transaction)
       end
     end
 
     transactions
   end
 
-  def self.is_recurring?(i, recurring_transactions, current_transaction)
+  def self.recurring?(index, recurring_transactions, current_transaction)
     previous_month = current_transaction.date - 1.month
     previous_dates = [1, 2].flat_map do |date|
       [previous_month, previous_month + date, previous_month - date]
     end
-    (recurring_transactions[i..recurring_transactions.count - 1].map(&:date) & previous_dates).present?
+
+    (recurring_transactions[index..recurring_transactions.count - 1].map(&:date) &
+      previous_dates).present?
   end
 end

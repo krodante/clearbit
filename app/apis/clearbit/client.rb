@@ -10,7 +10,7 @@ module Clearbit
     def domain(name)
       response = HTTParty.get("#{BASE}/domains/find?name=#{name}", headers: headers)
 
-      json_response = JSON[response.body]
+      JSON[response.body]
     end
 
     private

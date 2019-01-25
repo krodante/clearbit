@@ -9,6 +9,6 @@ class Domain
 
   def self.load_domain(name)
     clearbit_client = Clearbit::Client.new(ENV['CLEARBIT_API_KEY'])
-    self.new(clearbit_client.domain(name))
+    new(clearbit_client.domain(name))
   end
 end
