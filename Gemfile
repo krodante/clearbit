@@ -25,12 +25,17 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'httparty'
 gem 'dotenv-rails'
-gem 'pg', '~> 0.20'
+gem "twitter-bootstrap-rails"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'rspec-rails'
+  gem 'rubocop'
+end
+
+group :test do
   gem 'vcr'
   gem 'webmock'
 end

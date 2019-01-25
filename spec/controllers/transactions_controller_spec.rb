@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TransacationsController, type: :controller do
+RSpec.describe TransactionsController, type: :controller do
   describe '/index' do
     
   end

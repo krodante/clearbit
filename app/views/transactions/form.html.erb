@@ -1,0 +1,15 @@
+<%= form_tag transactions_path do %>
+  <div class='field'>
+    <%= label_tag 'start_date','Start Date' %>
+    <%= date_field_tag 'start_date', 'YYYY-MM-DD' %>
+  </div>
+
+  <div class='field'>
+    <%= label_tag 'end_date','End Date' %>
+    <%= date_field_tag 'end_date', 'YYYY-MM-DD' %>
+  </div>
+
+  <div class='field'>
+    <%= submit_tag 'Get Transactions' %>
+  </div>
+<% end %>

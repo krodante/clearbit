@@ -1,0 +1,32 @@
+<%= link_to "Back >>", transactions_form_path %>
+
+<div class='container'>
+  <table class='table'>
+    <% @transactions.each do |transaction| %>
+      <thead>
+        <tr>
+          <th scope='col'>Date</th>
+          <th scope='col'>Amount</th>
+          <th scope='col'>Name</th>
+          <th scope='col'>Categories</th>
+          <th scope='col'>Domain</th>
+          <th scope='col'>Domain Name</th>
+          <th scope='col'>Domain Logo</th>
+          <th scope='col'>Recurring?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= transaction.date %></td>
+          <td><%= transaction.amount %></td>
+          <td><%= transaction.name %></td>
+          <td><%= transaction.categories.join(',') %></td>
+          <td><%= transaction.domain.domain %></td>
+          <td><%= transaction.domain.name %></td>
+          <td><%= transaction.domain.logo %></td>
+          <td><%= transaction.recurring %></td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>  
+</div>

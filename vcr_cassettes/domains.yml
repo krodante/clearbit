@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://company.clearbit.com/v1/domains/find?name=KFC
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer sk_09bc43a09ed1f3c8a383d2df58f2d2de
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 25 Jan 2019 17:46:53 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '89'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - public, must-revalidate, max-age=2592000
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Account-Id:
+      - f98a9604-c4f7-4fde-9518-4142515dd2cf
+      Vary:
+      - Accept-Encoding
+      Server:
+      - envoy
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "name": "KFC",
+          "domain": "kfc.com",
+          "logo": "https://logo.clearbit.com/kfc.com"
+        }
+    http_version: 
+  recorded_at: Fri, 25 Jan 2019 17:46:54 GMT
+recorded_with: VCR 4.0.0
