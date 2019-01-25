@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'rails-controller-testing'
 end
 
 group :test do

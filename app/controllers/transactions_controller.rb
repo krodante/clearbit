@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    if valid_params[:start_date] < valid_params[:end_date]
+    if Date.parse(valid_params[:start_date]) < Date.parse(valid_params[:end_date])
       @transactions = Transaction.set_recurring(valid_params[:start_date], valid_params[:end_date])
 
       render :index
@@ -17,6 +17,8 @@ class TransactionsController < ApplicationController
   def form
     render :form
   end
+
+  private
 
   def valid_params
     params.permit('start_date', 'end_date')
